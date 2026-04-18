@@ -336,7 +336,7 @@ class SelectPagination(Pagination):
         select = self._query_args["select"]
         select = select.limit(self.per_page).offset(self._query_offset)
         session = self._query_args["session"]
-        return list(session.execute(select).unique().scalars())
+        return list(session.execute(select).unique().all())
 
     def _query_count(self) -> int:
         select = self._query_args["select"]
